@@ -10,6 +10,15 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: "16"
+    jdkArchitectureOption: x64
+    jdkSourceOption: LocalDirectory
+    jdkFile: "/builds/openjdk-16.0.2_linux-x64_bin.tar.gz"
+    jdkDestinationDirectory: "/builds/binaries/externals"
+    cleanDestinationDirectory: true
 - task: Ant@1
   inputs:
     workingDirectory: ''
@@ -18,4 +27,6 @@ steps:
     jdkVersionOption: '16.0.2'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
+    testResultsFiles: '**/*.xml'
+
+
